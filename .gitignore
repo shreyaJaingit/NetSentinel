@@ -1,0 +1,63 @@
+# ==============================================================================
+# NetSentinel - Defensive .gitignore
+# ==============================================================================
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Secrets and environment files
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Do not ignore the safe environment template
+!.env.example
+
+# Datasets and raw network captures
+# Network datasets and PCAP files are often multi-GB and must not be committed
+data/*
+!data/README.md
+!data/.gitkeep
+
+# Machine Learning models and artifacts
+# Serialized models (.joblib, .pkl) are binary and should not be tracked in version control
+models/*
+!models/README.md
+!models/.gitkeep
+
+# SQLite and persistent database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Test caches and coverage reports
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE and OS generated files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and runtime exports
+*.log
+logs/
+exports/
