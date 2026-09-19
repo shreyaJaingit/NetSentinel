@@ -28,3 +28,8 @@ httpx==0.28.1
 
 # Environment & Settings
 python-dotenv==1.0.1
+
+# Windows-Specific SSL Trust Integration
+# Uses the Windows OS certificate store to prevent SSL: CERTIFICATE_VERIFY_FAILED on Windows.
+# This is a Windows-specific workaround and is not needed on Linux/macOS.
+pip-system-certs==4.0; sys_platform == 'win32'
