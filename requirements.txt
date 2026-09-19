@@ -1,0 +1,30 @@
+# NetSentinel - Production and Educational Dependencies
+# Pinned for Python 3.9 on Windows (all pre-compiled binary wheels)
+
+# Data Processing & Numerical Computing
+numpy==1.26.4
+pandas==2.2.3
+
+# Machine Learning & Visualization
+scikit-learn==1.5.2
+matplotlib==3.9.2
+joblib==1.4.2
+
+# Backend REST API & Data Validation
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+pydantic==2.10.4
+
+# Persistence & Database Access
+greenlet==3.2.4
+sqlalchemy==2.0.36
+
+# Security Analyst Dashboard
+streamlit==1.40.2
+
+# Automated Testing & Test Client
+pytest==8.3.4
+httpx==0.28.1
+
+# Environment & Settings
+python-dotenv==1.0.1
