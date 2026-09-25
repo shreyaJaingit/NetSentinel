@@ -39,3 +39,9 @@ NUMERICAL_FEATURES = [
 
 # Complete list of expected input raw features (42 features: 39 numerical + 3 categorical)
 EXPECTED_RAW_FEATURES = CATEGORICAL_FEATURES + NUMERICAL_FEATURES
+
+# Detection & Database Defaults
+DEFAULT_DETECTION_THRESHOLD = 0.5
+DATABASE_URL = f"sqlite:///{DATA_DIR / 'netsentinel.db'}"
+API_HOST = "127.0.0.1"
+API_PORT = 8000
