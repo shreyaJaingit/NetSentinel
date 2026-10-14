@@ -1,0 +1,48 @@
+# NetSentinel Configuration (2026 Standards)
+
+kafka:
+  bootstrap_servers:
+    - "localhost:9092"
+  telemetry_topic: "network-telemetry"
+  alerts_topic: "threat-alerts"
+  linger_ms: 10
+  acks: 1
+  compression_type: "gzip"
+  consumer_group: "netsentinel-inference-group"
+  batch_size: 100
+  auto_offset_reset: "latest"
+
+sniffer:
+  interface: null
+  flow_timeout: 15.0
+  active_timeout: 60.0
+  bpf_filter: "ip"
+  promiscuous: true
+
+inference:
+  model_path: "models/unsw_nb15_model.onnx"
+  anomaly_threshold: 0.85
+  shap_max_background_samples: 50
+  shap_top_features_count: 3
+  execution_provider: "CPUExecutionProvider"
+
+mitigation:
+  rules_snort3_path: "rules/netsentinel_snort3.rules"
+  rules_suricata_path: "rules/netsentinel_suricata.rules"
+  base_sid: 1000001
+  webhook_url: "https://localhost:8443/api/v1/mitigation/alert"
+  mtls:
+    enabled: true
+    ca_cert: "certs/ca.crt"
+    client_cert: "certs/client.crt"
+    client_key: "certs/client.key"
+  firewall:
+    backend: "nftables" # or iptables
+    default_ttl_seconds: 3600
+    gvisor_runtime: "runsc"
+    dry_run: true # Set to false in production environments with root/gVisor privileges
+
+monitoring:
+  port: 8000
+  host: "0.0.0.0"
+  metrics_path: "/metrics"

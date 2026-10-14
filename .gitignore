@@ -19,23 +19,19 @@ venv.bak/
 .env
 .env.local
 .env.*.local
-*.pem
-*.key
-
-# Do not ignore the safe environment template
 !.env.example
 
 # Datasets and raw network captures
-# Network datasets and PCAP files are often multi-GB and must not be committed
 data/*
 !data/README.md
 !data/.gitkeep
 
 # Machine Learning models and artifacts
-# Serialized models (.joblib, .pkl) are binary and should not be tracked in version control
 models/*
 !models/README.md
 !models/.gitkeep
+!models/unsw_nb15_model.onnx
+!models/unsw_nb15_model.json
 
 # SQLite and persistent database files
 *.db
@@ -56,6 +52,8 @@ htmlcov/
 .DS_Store
 Thumbs.db
 desktop.ini
+*.swp
+*~
 
 # Logs and runtime exports
 *.log
@@ -63,3 +61,8 @@ logs/
 exports/
 reports/
 outputs/
+
+# Build & packaging
+build/
+dist/
+*.egg-info/

@@ -1,35 +1,51 @@
-# NetSentinel - Production and Educational Dependencies
+# NetSentinel - Production & Educational Dependencies
 # Pinned for Python 3.9 on Windows (all pre-compiled binary wheels)
 
 # Data Processing & Numerical Computing
-numpy==1.26.4
-pandas==2.2.3
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
 
-# Machine Learning & Visualization
-scikit-learn==1.5.2
-matplotlib==3.9.2
-joblib==1.4.2
+# Machine Learning, Explainability & Visualization
+scikit-learn>=1.3.0
+xgboost>=2.0.0
+lightgbm>=4.1.0
+onnx>=1.14.0
+onnxruntime>=1.16.0
+skl2onnx>=1.15.0
+shap>=0.43.0
+matplotlib>=3.8.0
+joblib>=1.3.0
+
+# Streaming Pipeline & Network Telemetry
+scapy>=2.5.0
+kafka-python>=2.0.2
+
+# Observability & Metrics
+prometheus-client>=0.19.0
+
+# Testing & Benchmarking
+locust>=2.16.0
+pytest>=7.4.0
+httpx>=0.27.0
+
+# Security, PKI & Encryption
+cryptography>=41.0.0
+requests>=2.31.0
 
 # Backend REST API & Data Validation
-fastapi==0.115.6
-uvicorn[standard]==0.32.1
-pydantic==2.10.4
-
-# Persistence & Database Access
-greenlet==3.2.4
-sqlalchemy==2.0.36
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic>=2.7.0
+sqlalchemy>=2.0.0
+greenlet>=3.0.0
 
 # Security Analyst Dashboard
-streamlit==1.40.2
+streamlit>=1.35.0
 
-# Automated Testing & Test Client
-pytest==8.3.4
-httpx==0.28.1
-
-# Environment & Settings
-python-dotenv==1.0.1
+# Configuration & Environment
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
 
 # Windows-Specific SSL Trust Integration
-# Uses the Windows OS certificate store to prevent SSL: CERTIFICATE_VERIFY_FAILED on Windows.
-# This is a Windows-specific workaround and is not needed on Linux/macOS.
 pip-system-certs==4.0; sys_platform == 'win32'

@@ -1,0 +1,108 @@
+{
+  "ociVersion": "1.0.2",
+  "process": {
+    "terminal": false,
+    "user": {
+      "uid": 0,
+      "gid": 0
+    },
+    "args": [
+      "/usr/local/bin/python",
+      "-m",
+      "src.mitigation.block_engine",
+      "--daemon"
+    ],
+    "env": [
+      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "TERM=xterm",
+      "PYTHONUNBUFFERED=1",
+      "NETSENTINEL_GVISOR_ISOLATED=1"
+    ],
+    "cwd": "/app",
+    "capabilities": {
+      "bounding": [
+        "CAP_NET_ADMIN",
+        "CAP_NET_RAW"
+      ],
+      "effective": [
+        "CAP_NET_ADMIN",
+        "CAP_NET_RAW"
+      ],
+      "inheritable": [
+        "CAP_NET_ADMIN",
+        "CAP_NET_RAW"
+      ],
+      "permitted": [
+        "CAP_NET_ADMIN",
+        "CAP_NET_RAW"
+      ]
+    },
+    "rlimits": [
+      {
+        "type": "RLIMIT_NOFILE",
+        "hard": 65536,
+        "soft": 65536
+      }
+    ],
+    "noNewPrivileges": true
+  },
+  "root": {
+    "path": "rootfs",
+    "readonly": true
+  },
+  "hostname": "netsentinel-mitigation-sandbox",
+  "mounts": [
+    {
+      "destination": "/proc",
+      "type": "proc",
+      "source": "proc"
+    },
+    {
+      "destination": "/dev",
+      "type": "tmpfs",
+      "source": "tmpfs",
+      "options": ["nosuid", "strictatime", "mode=755", "size=65536k"]
+    },
+    {
+      "destination": "/sys",
+      "type": "sysfs",
+      "source": "sysfs",
+      "options": ["nosuid", "noexec", "nodev", "ro"]
+    },
+    {
+      "destination": "/app/certs",
+      "type": "bind",
+      "source": "./certs",
+      "options": ["ro", "rbind"]
+    },
+    {
+      "destination": "/app/rules",
+      "type": "bind",
+      "source": "./rules",
+      "options": ["rw", "rbind"]
+    }
+  ],
+  "linux": {
+    "namespaces": [
+      { "type": "pid" },
+      { "type": "network" },
+      { "type": "ipc" },
+      { "type": "uts" },
+      { "type": "mount" }
+    ],
+    "resources": {
+      "memory": {
+        "limit": 536870912
+      },
+      "cpu": {
+        "shares": 1024
+      }
+    }
+  },
+  "annotations": {
+    "dev.gvisor.spec.platform": "ptrace",
+    "dev.gvisor.spec.net": "host",
+    "dev.gvisor.spec.debug": "false",
+    "runsc.sandbox.isolation": "true"
+  }
+}
